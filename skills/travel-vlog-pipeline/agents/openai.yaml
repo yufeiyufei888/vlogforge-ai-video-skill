@@ -1,0 +1,6 @@
+interface:
+  display_name: "VlogForge AI"
+  short_description: "Reviewable travel and food Vlog planning, rendering, and QA"
+  default_prompt: "Use $travel-vlog-pipeline to turn this footage folder into a reviewable Vlog plan and versioned final render."
+policy:
+  allow_implicit_invocation: true

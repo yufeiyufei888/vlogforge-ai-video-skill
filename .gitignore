@@ -1,0 +1,30 @@
+# Runtime and pinned upstream sources (downloaded locally, never redistributed)
+.vendor/
+.venv/
+.release-venv*/
+.tools/
+
+# Editing projects and generated media
+origin/
+work/
+verify/
+output/
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.wav
+*.mp3
+
+# Python and test artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local scratch data
+.tmp-*/
+*.log
+Thumbs.db
+.DS_Store

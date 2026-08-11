@@ -1,0 +1,23 @@
+{
+  "schema_version": "travel-vlog-profile/1",
+  "name": "food",
+  "sections": [
+    {"id": "opening", "act": 1, "title": "抵达 — 从街头走进店里", "roles": ["arrival", "exterior", "entry"], "weight": 0.18},
+    {"id": "setting", "act": 1, "title": "入座 — 环境与选择", "roles": ["environment", "ordering"], "weight": 0.17},
+    {"id": "serving", "act": 2, "title": "上桌 — 期待变成香气", "roles": ["serving"], "weight": 0.12},
+    {"id": "food", "act": 2, "title": "开吃 — 菜品细节与动作", "roles": ["food_hero", "food_action"], "weight": 0.31},
+    {"id": "reaction", "act": 2, "title": "品尝 — 味道与真实反应", "roles": ["tasting_reaction", "people_interaction"], "weight": 0.14},
+    {"id": "ending", "act": 3, "title": "离店 — 总结这次体验", "roles": ["summary_exit"], "weight": 0.08}
+  ],
+  "required_groups": [
+    ["arrival", "exterior"],
+    ["entry"],
+    ["environment"],
+    ["ordering", "serving"],
+    ["food_hero"],
+    ["tasting_reaction"],
+    ["summary_exit"]
+  ],
+  "content_ratio_advisory": {"food": [0.30, 0.60], "scenery": [0.10, 0.35], "people": [0.10, 0.30], "daily_transit": [0.15, 0.40]},
+  "bgm_suggestion": "genre: jazz or bossa nova; mood: cozy, playful; instruments: piano, upright bass; tempo: moderate; bpm: 85-105"
+}

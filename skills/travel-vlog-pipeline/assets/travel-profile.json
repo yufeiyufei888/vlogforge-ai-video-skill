@@ -1,0 +1,14 @@
+{
+  "schema_version": "travel-vlog-profile/1",
+  "name": "travel",
+  "sections": [
+    {"id": "opening", "act": 1, "title": "出发 — 建立期待", "roles": ["transit", "arrival"], "weight": 0.22},
+    {"id": "explore", "act": 2, "title": "探索 — 地点与风景", "roles": ["scenic_transition", "environment"], "weight": 0.34},
+    {"id": "people", "act": 2, "title": "途中 — 人与互动", "roles": ["people_interaction"], "weight": 0.16},
+    {"id": "activity", "act": 2, "title": "体验 — 旅途的重点", "roles": ["food_hero", "food_action", "tasting_reaction", "other"], "weight": 0.20},
+    {"id": "ending", "act": 3, "title": "收尾 — 留下这段旅程", "roles": ["summary_exit"], "weight": 0.08}
+  ],
+  "required_groups": [["transit", "arrival"], ["scenic_transition", "environment"], ["summary_exit"]],
+  "content_ratio_advisory": {"food": [0.15, 0.45], "scenery": [0.20, 0.50], "people": [0.10, 0.30], "daily_transit": [0.10, 0.30]},
+  "bgm_suggestion": "genre: cinematic acoustic; mood: warm, curious; instruments: piano, strings, acoustic guitar; tempo: moderate; bpm: 80-100"
+}

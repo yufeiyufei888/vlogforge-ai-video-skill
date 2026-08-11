@@ -1,0 +1,36 @@
+{
+  "schema_version": "travel-vlog-upstream-lock/2",
+  "sources": [
+    {
+      "name": "maxazure-video-editing-skill",
+      "repository": "https://github.com/maxazure/video-editing-skill",
+      "commit": "b3d80f9a9b6eb79b8aa0a9881bbf7b0c115d23ce",
+      "local_path": ".vendor/video-editing-skill-main",
+      "archive_sha256": "8466E3560CA417A9BF34EBF4EDBD14EA9CE70411CBE7FFCC4D71C69C5F596013",
+      "tree_sha256": "7c5144f8a9ca88878e8e7cf91ed8f17d2b334ac245e4d34859cbf40e70c34a10",
+      "tree_file_count": 293,
+      "skill_sha256": "511F7641CFB26BC088EADA83C7CDBF9C76E86611CBE77EE5EA08B307467A79C2",
+      "script_sha256": {
+        "scripts/project_bootstrap.py": "D9B93C217E0EFDDEFA5060EDF57F57A0A0B21ECA91956F56B19A50A39B62E813",
+        "scripts/edit_preflight.py": "7C32279ED732162AA536E3F12803532512188D0ABCE832DA2FDDBABE5A7D2C2D",
+        "scripts/render_final.py": "8259385832536EEB203EA1AF3DAE26B8B6AA0C7D8D1F17DE0EBE10D38428A197",
+        "scripts/render_qa.py": "9933C4E31B5693B18EAC12DDCD676FD76154820B5F5A0371A23C9B25B583DD55",
+        "scripts/utils.py": "18F1CCDC6B246A6BC81C34E98F8520D2C5BDC704CF57047B7292C206C083D1E8"
+      }
+    },
+    {
+      "name": "vlog-auto-edit",
+      "repository": "https://github.com/znyupup/ai-video-editing-skill",
+      "commit": "b6429ab550a64c595dc68d42c47cf2b489a50619",
+      "local_path": ".vendor/ai-video-editing-skill-main",
+      "archive_sha256": "01E1A81378F881D7964E6037EA564DF5C1233FDAC200D4EB9EDEB0A3968BB2F5",
+      "tree_sha256": "e7b217320c4161876eead6958741d5f6ea827d3d09be38b3a63a768f154cdf95",
+      "tree_file_count": 10,
+      "skill_sha256": "913D45D6B15F76B2A7CFD32D1442AA5E19D29A6B8B057C0FB108953A509EB539",
+      "script_sha256": {
+        "scripts/gen_dashboard.py": "230B76679034FBB99F3AE67C116BA87C252E7FACEF70D2799312AA9889AC2C20",
+        "scripts/gen_storyboard.py": "068E1131BE3582A17233A5257CE5F65B8F47D2EE1972BD6335C44371431A8D7A"
+      }
+    }
+  ]
+}

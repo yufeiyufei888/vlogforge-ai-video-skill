@@ -1,0 +1,26 @@
+name: Feature request
+description: Suggest a focused improvement to the Vlog editing workflow.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Editing problem
+      description: What creator or engineering problem should this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Proposed workflow
+      description: Where should it fit into prepare, review, compile, preview, render, or QA?
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Integrity and privacy impact
+      description: Note any effect on originals, local processing, approvals, runtime locking, or final QA.
+    validations:
+      required: true
