@@ -1,0 +1,11 @@
+VlogForge AI / travel-vlog-pipeline
+Copyright 2026 yufeiyufei888
+
+Self-authored integration code, documentation and skill content are licensed
+under Apache-2.0. External dependencies retain their existing licenses and
+are not redistributed in this repository. See references/upstream.md and
+assets/upstream-lock.json inside skills/travel-vlog-pipeline for provenance.
+
+Jianying native mechanical operations are maintained separately in
+https://github.com/yufeiyufei888/jianying-MCP . This is community tooling,
+not an official Jianying/CapCut interface or endorsement.

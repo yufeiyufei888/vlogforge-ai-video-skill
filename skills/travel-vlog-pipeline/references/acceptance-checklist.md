@@ -1,5 +1,7 @@
 # Acceptance Checklist
 
+This checklist governs the existing MP4 renderer. Native-draft delivery follows [jianying-native-draft.md](jianying-native-draft.md) instead and does not require proxy normalization or renderer approval receipts. General review, speech preservation and measured-source export-bitrate requirements apply to both branches; see [editing-preferences.md](editing-preferences.md).
+
 ## Before Integrity Approval
 
 - Source inventory exists and reviewed source files still exist.

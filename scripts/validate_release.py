@@ -52,8 +52,14 @@ def main() -> int:
         SKILL / "scripts" / "runtime_integrity.py",
         SKILL / "assets" / "upstream-lock.json",
         SKILL / "references" / "artifact-contract.md",
+        SKILL / "references" / "editing-preferences.md",
+        SKILL / "references" / "jianying-native-draft.md",
+        SKILL / "references" / "jianying-local-adapter.md",
+        SKILL / "references" / "render-workflow.md",
         ROOT / "README.md",
         ROOT / "README.zh-CN.md",
+        ROOT / "LICENSE",
+        ROOT / "NOTICE",
     ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.is_file()]
     if missing:

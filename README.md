@@ -1,6 +1,6 @@
 # VlogForge AI
 
-**A production-grade AI video editing skill for travel, city-walk, restaurant, and food Vlogs.**
+**A reviewable AI editing workflow for travel, city-walk, restaurant, and food Vlogs: editable native drafts or versioned MP4 delivery.**
 
 [![CI](https://github.com/yufeiyufei888/vlogforge-ai-video-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/yufeiyufei888/vlogforge-ai-video-skill/actions/workflows/ci.yml)
 ![Python 3.12+](https://img.shields.io/badge/Python-3.12%2B-3776AB?logo=python&logoColor=white)
@@ -10,7 +10,7 @@
 
 [中文说明](README.zh-CN.md) · [Skill entry](skills/travel-vlog-pipeline/SKILL.md) · [Architecture](#how-it-works) · [Contributing](CONTRIBUTING.md)
 
-VlogForge AI turns a folder of raw footage into a reviewable story plan and a versioned final video. It combines narrative-aware clip classification, selective local transcription, storyboard review, media normalization, deterministic rendering, integrity-bound approval, and automated FFmpeg QA in one Codex-compatible skill.
+VlogForge AI turns complete originals into a carefully reviewed story. Choose an **editable Jianying original-reference draft**, executed by the companion [jianying-MCP](https://github.com/yufeiyufei888/jianying-MCP), or the existing pinned MaxAzure **versioned MP4 render** workflow. This skill owns travel/food review and narrative; the companion tool owns copy-only native timeline operations.
 
 It is built for creators and engineers who want AI-assisted editing without surrendering editorial control or silently uploading private footage.
 
@@ -19,17 +19,21 @@ It is built for creators and engineers who want AI-assisted editing without surr
 Most “one-click” editors hide how clips were selected, where speech was cut, or whether the final file was actually decoded. VlogForge AI treats editing as an auditable pipeline:
 
 - **Story before render** — build and review the arrival-to-exit narrative before producing the master.
-- **Local-first media handling** — frame extraction, FFmpeg processing, and optional faster-whisper ASR run locally.
+- **Local-first media handling** — native drafts reference complete originals in place, with no required media copying, transcoding or ASR models; the renderer keeps its existing copy/proxy workflow and optional local ASR.
 - **Human approval gates** — a storyboard review is not treated as permission to render the final video.
-- **Reproducible outputs** — sources, proxies, subtitles, timeline, BGM state, preview, and runtime are bound by hashes.
+- **Reproducible outputs** — native plans bind saved state, media and code fingerprints; renderer approval binds sources, proxies, subtitles, timeline, BGM, preview and runtime.
 - **Versioned delivery** — prior masters are preserved instead of overwritten.
 - **Evidence-based QA** — metadata checks, strict full-file decode, cut review, audio review, and upstream QA are separate acceptance layers.
 
 ## Features
 
+Native-draft operations: reviewed original ranges, local insert/move/trim with explicit companion-track policies, confirmed local BGM loops/fades/ducking, selected transitions, editable bottom SRT tracks and evidence-checked media relinking. All modifications create separate drafts/copies; fresh installations require local native acceptance. Community tools, not an official Jianying interface; no automatic export or cloud music.
+
+The following stages describe the **unchanged MP4 rendering branch**, not native-draft prerequisites:
+
 | Stage | What it does |
 |---|---|
-| Ingest | Copies and hashes raw media without changing the originals |
+| Ingest (renderer) | Copies and hashes raw media without changing the originals |
 | Analyze | Extracts representative frames and selectively transcribes speech-bearing clips |
 | Structure | Classifies travel/food roles and builds a reviewable story plan |
 | Review | Generates storyboard and dashboard artifacts for human inspection |
@@ -51,6 +55,23 @@ Most “one-click” editors hide how clips were selected, where speech was cut,
 The current release is Windows-first and targets local H.264/AAC workflows. WSL is not required.
 
 ## Quick start
+
+### Choose editable drafts or rendering first
+
+For editable drafts, clone this repository for the travel skill and separately follow [jianying-MCP installation](https://github.com/yufeiyufei888/jianying-MCP/blob/main/docs/install.md). **Do not run the renderer bootstrap merely to create a native draft.** Reuse existing Python/FFmpeg, reference full originals, review actual frame/audio coverage, and leave final export manual. Native format compatibility must be tested locally; CI does not prove it.
+
+Example request:
+
+```text
+Use $travel-vlog-pipeline to inspect every original in <footage-folder>,
+keep the scenic route and complete meaningful speech, and create a longer,
+editable Jianying draft through the locally verified MCP. Preserve originals,
+do not relayout an existing manual edit, and leave final export to me.
+```
+
+See [native workflow](skills/travel-vlog-pipeline/references/jianying-native-draft.md), [MCP/CLI contract](skills/travel-vlog-pipeline/references/jianying-local-adapter.md), and [review/export preferences](skills/travel-vlog-pipeline/references/editing-preferences.md).
+
+The remaining bootstrap instructions apply **only to the existing renderer**:
 
 ### Requirements
 
@@ -92,9 +113,10 @@ skills/travel-vlog-pipeline/SKILL.md
 Example request:
 
 ```text
-Use $travel-vlog-pipeline to turn D:\Footage\Qingdao-Food-Trip into a
-reviewable two-minute food Vlog. Keep the full arrival-to-exit story,
-preserve the originals, and stop for review before the full render.
+Use $travel-vlog-pipeline to turn <footage-folder> into a reviewable food
+Vlog using the versioned MP4 branch. Keep the full arrival-to-exit story
+and meaningful speech; choose duration from the reviewed material rather
+than forcing two minutes. Stop for review before the full render.
 ```
 
 The skill is intentionally workspace-local: keep the skill, `.vendor`, `.venv`, and `.tools` under the same cloned repository so the secure launcher can verify the full runtime boundary.
@@ -135,11 +157,13 @@ vlogforge-ai-video-skill/
 
 ## Privacy and safety
 
-- Original footage is preserved; `copy` is the default import mode.
+- Original footage is preserved. Native drafts reference complete originals in place; `copy` remains the default **renderer** import mode.
 - Footage and extracted frames are not sent to a third-party visual API without explicit consent.
 - Local bytecode caches, symlinks, junctions, and unpinned vendor changes fail closed.
 - The full render is blocked until the exact compiled bundle and technical preview are reviewed and approved.
 - Automated checks are evidence, not a replacement for watching and listening to the final cut.
+- Inspect every source with distributed and denser action/cut frames; state what was not listened to or watched continuously. Repair isolated missing shots locally rather than rebuilding the native main track.
+- Before either manual export or rendering, measure every original's video bitrate, trial representative moving scenes, and report source/final bitrate, codec, duration and size. There is no universal fixed export bitrate.
 
 ## Upstream boundary
 
@@ -159,7 +183,11 @@ $env:PYTHONDONTWRITEBYTECODE = '1'
 py -3 -m unittest discover -s .\skills\travel-vlog-pipeline\tests -v
 ```
 
-The repository CI runs the same suite on Python 3.12. Real release acceptance additionally requires the pinned runtime, a technical preview, representative visual/audio review, and a full-file decode.
+Windows CI runs the same suite on Python 3.12 and 3.13. Real renderer acceptance additionally requires the pinned runtime, a technical preview, actual visual/audio review and full-file decode. Native draft acceptance belongs to the separate tool and needs editor play/save/reopen; a visible waveform is not listening evidence.
+
+## License and companion repository
+
+Self-authored integration, skill and documentation are [Apache-2.0](LICENSE); third-party content retains its original license. The renderer code and upstream lock are not changed by adding the native branch. [jianying-MCP](https://github.com/yufeiyufei888/jianying-MCP) contains the mechanical tool, self-authored calling skill, tests, shared path configuration and explicit installation/rollback instructions. The repositories cross-link instead of duplicating the full travel skill.
 
 ## Roadmap
 

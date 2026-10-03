@@ -40,6 +40,7 @@ Keep the chronological route unless a clearly reviewed hook needs a brief reorde
 - Treat 3-4 seconds per visual shot as an advisory center, not a hard rule.
 - Use sub-2-second shots only in a deliberate montage.
 - Allow shots over 8 seconds when continuous speech, action, or emotional payoff needs them.
+- For longer-form briefs, do not reduce the full visit to a fixed two-minute target. Advisory ranges and ratios never override the actual speech, scenic payoff or reviewed user intent; see [editing-preferences.md](editing-preferences.md).
 - Alternate wide, medium, close-up, and action/reaction coverage.
 - Avoid repeating the same source moment merely to satisfy a ratio.
 - For visual-only material, warn above 8 seconds unless sustained action justifies it.
